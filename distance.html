@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Distance converter app" content="Amar Bessedik, web design, responsive web design, boostrap 4, javascript, html5, css3, jquery">
+    <title>DISTANCECONVERTER</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/distance-style.css">
+</head>
+
+<body>
+    <!--header-->
+    <div id="header" class="clearfix w-100">
+        <span id="app-title">
+            <kbd id="app-name">distanceConverter</kbd>
+        </span>
+        <a href="../../../index.html" style="float: right; padding-right: 50px; padding-top: 10px; font-weight: bold; color: rgb(231, 171, 6);">Home</a>
+    </div>
+
+    <div class="row">
+        <div id="app-container" class="mt-2 container col col-lg-6">
+            <form id="tc-form">
+                <!--Radio buttons-->
+                <div class="form-group"> 
+                    <label class="radio-inline control-label" for="one" id="radio1">
+                        <input id="one" type="radio" name="selection" value="1" checked hidden/>
+                        <kbd class="badge badge-danger" id="km-label" data-toggle="tooltip" data-placement="bottom" title="Kilometers">km</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="two" id="radio2">
+                        <input id="two" type="radio" name="selection" value="2" hidden/>
+                        <kbd class="badge badge-danger" id="ct-label" data-toggle="tooltip" data-placement="bottom" title="Centimeters">cm</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="three" id="radio3">
+                        <input id="three" type="radio" name="selection" value="3" hidden/>
+                        <kbd class="badge badge-danger" id="mt-label" data-toggle="tooltip" data-placement="bottom" title="Meters">mt</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="four" id="radio4">
+                        <input id="four" type="radio" name="selection" value="4" hidden/>
+                        <kbd class="badge badge-danger" id="ml-label" data-toggle="tooltip" data-placement="bottom" title="Miles">ml</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="seven" id="radio7">
+                        <input id="seven" type="radio" name="selection" value="7" hidden/>
+                        <kbd class="badge badge-danger" id="yr-label" data-toggle="tooltip" data-placement="bottom" title="Yards">yr</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="five" id="radio5">
+                        <input id="five" type="radio" name="selection" value="5" hidden/>
+                        <kbd class="badge badge-danger" id="ft-label" data-toggle="tooltip" data-placement="bottom" title="Feet">ft</kbd>
+                    </label>
+                    <label class="radio-inline control-label" for="six" id="radio6">
+                        <input id="six" type="radio" name="selection" value="6" hidden/>
+                        <kbd class="badge badge-danger" id="in-label" data-toggle="tooltip" data-placement="bottom" title="Inches">in</kbd>
+                    </label>
+                </div>
+
+                <div id="choices">
+                    <!--kilometers output divs -->
+                    <div id="w-1" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Kilometers</label>
+                            <input id="kmsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in kilometers ...">
+                        </div>
+
+                        <div id="output1">
+                            <div class="card mb-3">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-1"></div>
+                            </div>
+                            <div class="card mb-3">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-1"></div>
+                            </div>
+                            <div class="card mb-3">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-1"></div>
+                            </div>
+                            <div class="card mb-3">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-1"></div>
+                            </div>
+                            <div class="card mb-3">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-1"></div>
+                            </div>
+                            <div class="card mb-3">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Centimeters output divs -->
+                    <div id="w-2" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Centimeters</label>
+                            <input id="ctsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in centimeters ...">
+                        </div>
+                        <div id="output2">
+                            <div class="card mb-3">
+                                <div id="kmsOutput2">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-2"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mtsOutput2">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-2"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mlsOutput2">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-2"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="yrsOutput2">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-2"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ftsOutput2">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-2"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="insOutput2">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Metres output divs -->
+                    <div id="w-3" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Meteres</label>
+                            <input id="mtsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in meters ...">
+                        </div>
+                        <div id="output3">
+                            <div class="card mb-3">
+                                <div id="kmsOutput3">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-3"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ctsOutput3">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-3"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mlsOutput3">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-3"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="yrsOutput3">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-3"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ftsOutput3">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-3"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="insOutput3">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Miles output divs -->
+                    <div id="w-4" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Miles</label>
+                            <input id="mlsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in miles ...">
+                        </div>
+                        <div id="output4">
+                            <div class="card mb-3">
+                                <div id="kmsOutput4">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-4"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mtsOutput4">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-4"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ctsOutput4">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-4"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="yrsOutput4">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-4"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ftsOutput4">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-4"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="insOutput4">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Yards output divs -->
+                    <div id="w-7" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Yards</label>
+                            <input id="yrsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in yards ...">
+                        </div>
+                        <div id="output7">
+                            <div class="card mb-3">
+                                <div id="kmsOutput7">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-7"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mtsOutput7">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-7"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ctsOutput7">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-7"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mlsOutput7">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-7"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ftsOutput7">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-7"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="insOutput7">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-7"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feet output divs -->
+                    <div id="w-5" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Feet</label>
+                            <input id="ftsInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in feet ...">
+                        </div>
+                        <div id="output5">
+                            <div class="card mb-3">
+                                <div id="kmsOutput5">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-5"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ctsOutput5">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-5"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mtsOutput5">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-5"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="yrsOutput5">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-5"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mlsOutput5">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-5"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="insOutput5">
+                                    <label class="mesure">Inches</label>
+                                    <div class="card-block" id="insOutput-5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Inches output divs -->
+                    <div id="w-6" class="desc">
+                        <div class="form-group">
+                            <label class="unit badge-pill badge-dark">Inches</label>
+                            <input id="insInput" type="number" min="0" class="form-control form-control-lg card-block" placeholder="Enter distance in inches ...">
+                        </div>
+                        <div id="output6">
+                            <div class="card mb-3">
+                                <div id="kmsOutput6">
+                                    <label class="mesure">Kilometers</label>
+                                    <div class="card-block" id="kmsOutput-6"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ctsOutput6">
+                                    <label class="mesure">Centimeters</label>
+                                    <div class="card-block" id="ctsOutput-6"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mtsOutput6">
+                                    <label class="mesure">Meters</label>
+                                    <div class="card-block" id="mtsOutput-6"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="ftsOutput6">
+                                    <label class="mesure">Feet</label>
+                                    <div class="card-block" id="ftsOutput-6"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="yrsOutput6">
+                                    <label class="mesure">Yards</label>
+                                    <div class="card-block" id="yrsOutput-6"></div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div id="mlsOutput6">
+                                    <label class="mesure">Miles</label>
+                                    <div class="card-block" id="mlsOutput-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End output div-->
+
+                <!--clear button -->
+                <div class="form-group">
+                    <button id="clear" class="btn btn-danger float-right">RESET</button>
+                </div>
+                <br>
+                <br>
+            </form>
+
+        </div>
+        <br>
+        <br>
+        <div></div>
+        <div id="side-note" class="mt-4 container col col-lg-3">
+            <em class="badge badge-pill badge-dark">Note :</em>
+            <p>The focus in the design of
+                <strong>
+                    <em class="text-danger">DISTANCECONVERTER</em>
+                </strong> app is speed, functionality, responsiveness, UI, UX, scalability &amp; adaptability.</p>
+            <hr>
+            <blockquote class="block-quote ">
+                <em class="badge badge-pill badge-dark">Tools :</em>
+                <p>Bootstrap 4, jQuery, Javascript, HTML5, CSS3</p>
+
+                <hr>
+
+                <br>
+                <br>
+                <cite id="foot-print" class="badge btn-danger float-right">
+                    &copy; AmarBessedik
+                </cite>
+                <br>
+            </blockquote>
+        </div>
+    </div>
+
+    <br>
+    <footer class="footer">
+        <h5>Contact Info</h5>
+        <p>
+            <label for="contact"></label>
+            <kbd class="btn-warning">amar.bessedik@gmail.com</kbd>
+        </p>
+        <h6>&copy; AmarBessedik, May 2018</h6>
+    </footer>
+    <!-- Scripts -->
+    <script src="./js/distance-script.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script type="text/javascript">
+        document.getElementById("clear").addEventListener('click', clear);
+        function clear() {
+            var ID = [];
+            $('.card-block').each(function () {
+                ID.push(this.id);
+            });
+            var n = ID.length;
+
+            $(document).ready(function () {
+                /* Single line Reset function executes on click of Reset Button */
+                $('#kmsInput').val('').blur();
+                $('#mtsInput').val('').blur();
+                $('#ctsInput').val('').blur();
+                $('#mlsInput').val('').blur();
+                $('#ftsInput').val('').blur();
+                $('#insInput').val('').blur();
+
+                for (var i = 0; i < n; i++)
+                    document.getElementById(ID[i]).innerHTML = '';
+
+            });
+        }
+    </script>
+
+</body>
+
+</html>
